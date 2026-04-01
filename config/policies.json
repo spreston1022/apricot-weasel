@@ -1,0 +1,91 @@
+{
+  "policies": [
+    {
+      "name": "rate-limit-tenant",
+      "policyType": "rate-limit-inbound",
+      "handler": {
+        "export": "RateLimitInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "rateLimitBy": "function",
+          "requestsAllowed": 100,
+          "timeWindowMinutes": 1,
+          "identifier": {
+            "export": "rateLimitByTenant",
+            "module": "$import(./modules/rate-limit-tenant)"
+          }
+        }
+      }
+    },
+    {
+      "name": "rate-limit-user",
+      "policyType": "rate-limit-inbound",
+      "handler": {
+        "export": "RateLimitInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "rateLimitBy": "function",
+          "requestsAllowed": 20,
+          "timeWindowMinutes": 1,
+          "identifier": {
+            "export": "rateLimitByUser",
+            "module": "$import(./modules/rate-limit-user)"
+          }
+        }
+      }
+    },
+    {
+      "handler": {
+        "export": "OpenIdJwtInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "audience": "https://api.yourapp.com",
+          "issuer": "https://auth.example.com",
+          "secret": "wENfc4Pou8jhpANfckHOYoqsL1fZZ1yS5xyKTYnfVLY="
+        }
+      },
+      "name": "open-id-jwt-auth-inbound",
+      "policyType": "open-id-jwt-auth-inbound"
+    },
+    {
+      "handler": {
+        "export": "JWTScopeValidationInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "scopes": [
+            "plan:premium"
+          ]
+        }
+      },
+      "name": "jwt-scopes-inbound",
+      "policyType": "jwt-scopes-inbound"
+    },
+    {
+      "handler": {
+        "export": "OpenIdJwtInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "audience": "https://api.yourapp.com",
+          "issuer": "https://auth.example.com",
+          "secret": "wENfc4Pou8jhpANfckH0YoqsL1fZZ1yS5xyKTYnfVLY="
+        }
+      },
+      "name": "open-id-jwt-auth-inbound-1",
+      "policyType": "open-id-jwt-auth-inbound"
+    },
+    {
+      "handler": {
+        "export": "JWTScopeValidationInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "scopes": [
+            "read:payments",
+            "write:payments"
+          ]
+        }
+      },
+      "name": "jwt-scopes-inbound-1",
+      "policyType": "jwt-scopes-inbound"
+    }
+  ]
+}
