@@ -5,27 +5,57 @@
     "title": "My Zuplo API"
   },
   "paths": {
-    "/path-1": {
+    "/character": {
       "x-zuplo-path": {
         "pathMode": "open-api"
       },
       "get": {
         "summary": "New Route",
-        "description": "",
+        "description": "Get the list of all disney characters ",
         "x-zuplo-route": {
           "corsPolicy": "none",
           "handler": {
             "export": "urlForwardHandler",
             "module": "$import(@zuplo/runtime)",
             "options": {
-              "baseUrl": "https://echo.zuplo.io"
+              "baseUrl": "https://api.disneyapi.dev"
+            }
+          },
+          "policies": {
+            "inbound": [
+              "api-key-inbound"
+            ]
+          }
+        },
+        "operationId": "Characters"
+      }
+    },
+    "/mcp": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "post": {
+        "summary": "MCP Server",
+        "description": "Default MCP Server",
+        "x-zuplo-route": {
+          "corsPolicy": "none",
+          "handler": {
+            "export": "mcpServerHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "operations": [
+                {
+                  "file": "./config/routes.oas.json",
+                  "id": "new-route-319a4ce5"
+                }
+              ]
             }
           },
           "policies": {
             "inbound": []
           }
         },
-        "operationId": "new-route-319a4ce5"
+        "operationId": "49896d29-5f01-48d7-9595-8a5811a32d40"
       }
     }
   }
