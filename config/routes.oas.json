@@ -394,7 +394,7 @@
       "get": {
         "operationId": "getStandings",
         "summary": "Get standings",
-        "description": "Returns standings for a given league and season",
+        "description": "Returns MLB standings. Use league=1 for MLB and season=2025 for the current season",
         "parameters": [
           {
             "name": "league",
