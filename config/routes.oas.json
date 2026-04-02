@@ -1,31 +1,795 @@
 {
   "openapi": "3.1.0",
   "info": {
+    "title": "API-Sports Baseball",
     "version": "1.0.0",
-    "title": "My Zuplo API"
+    "description": "Baseball data including leagues, teams, games, standings, odds, and more via API-Sports"
   },
   "paths": {
-    "/path-1": {
+    "/timezone": {
       "x-zuplo-path": {
         "pathMode": "open-api"
       },
       "get": {
-        "summary": "New Route",
-        "description": "",
+        "operationId": "getTimezones",
+        "summary": "Get timezones",
+        "description": "Returns the list of available timezones",
         "x-zuplo-route": {
           "corsPolicy": "none",
           "handler": {
             "export": "urlForwardHandler",
             "module": "$import(@zuplo/runtime)",
             "options": {
-              "baseUrl": "https://echo.zuplo.io"
+              "baseUrl": "https://v1.baseball.api-sports.io",
+              "headers": {
+                "x-apisports-key": "$env(APISPORTS_KEY)"
+              }
+            }
+          },
+          "policies": {
+            "inbound": []
+          }
+        }
+      }
+    },
+    "/seasons": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "get": {
+        "operationId": "getSeasons",
+        "summary": "Get seasons",
+        "description": "Returns the list of available seasons",
+        "x-zuplo-route": {
+          "corsPolicy": "none",
+          "handler": {
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "baseUrl": "https://v1.baseball.api-sports.io",
+              "headers": {
+                "x-apisports-key": "$env(APISPORTS_KEY)"
+              }
+            }
+          },
+          "policies": {
+            "inbound": []
+          }
+        }
+      }
+    },
+    "/countries": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "get": {
+        "operationId": "getCountries",
+        "summary": "Get countries",
+        "description": "Returns the list of available countries",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "description": "Filter by country name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "required": false,
+            "description": "Filter by country code, e.g. US",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-zuplo-route": {
+          "corsPolicy": "none",
+          "handler": {
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "baseUrl": "https://v1.baseball.api-sports.io",
+              "headers": {
+                "x-apisports-key": "$env(APISPORTS_KEY)"
+              }
+            }
+          },
+          "policies": {
+            "inbound": []
+          }
+        }
+      }
+    },
+    "/leagues": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "get": {
+        "operationId": "getLeagues",
+        "summary": "Get leagues",
+        "description": "Returns the list of available leagues and cups",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "description": "The ID of the league",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "description": "The name of the league",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "country",
+            "in": "query",
+            "required": false,
+            "description": "The country name of the league",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "country_code",
+            "in": "query",
+            "required": false,
+            "description": "The country code of the league, e.g. US",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "season",
+            "in": "query",
+            "required": false,
+            "description": "The season year, e.g. 2023",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "required": false,
+            "description": "The type of league: League or Cup",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "League",
+                "Cup"
+              ]
+            }
+          },
+          {
+            "name": "current",
+            "in": "query",
+            "required": false,
+            "description": "Whether the league is currently active: true or false",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false"
+              ]
+            }
+          }
+        ],
+        "x-zuplo-route": {
+          "corsPolicy": "none",
+          "handler": {
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "baseUrl": "https://v1.baseball.api-sports.io",
+              "headers": {
+                "x-apisports-key": "$env(APISPORTS_KEY)"
+              }
+            }
+          },
+          "policies": {
+            "inbound": []
+          }
+        }
+      }
+    },
+    "/teams": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "get": {
+        "operationId": "getTeams",
+        "summary": "Get teams",
+        "description": "Returns information about baseball teams",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "description": "The ID of the team",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "description": "The name of the team",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "country",
+            "in": "query",
+            "required": false,
+            "description": "The country name of the team",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "country_code",
+            "in": "query",
+            "required": false,
+            "description": "The country code of the team, e.g. US",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "league",
+            "in": "query",
+            "required": false,
+            "description": "The league ID",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "season",
+            "in": "query",
+            "required": false,
+            "description": "The season year, e.g. 2023",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "description": "Search by team name (minimum 3 characters)",
+            "schema": {
+              "type": "string",
+              "minLength": 3
+            }
+          }
+        ],
+        "x-zuplo-route": {
+          "corsPolicy": "none",
+          "handler": {
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "baseUrl": "https://v1.baseball.api-sports.io",
+              "headers": {
+                "x-apisports-key": "$env(APISPORTS_KEY)"
+              }
+            }
+          },
+          "policies": {
+            "inbound": []
+          }
+        }
+      }
+    },
+    "/games": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "get": {
+        "operationId": "getGames",
+        "summary": "Get games",
+        "description": "Returns baseball games, filterable by league, season, team, and date",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "description": "The ID of the game",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "league",
+            "in": "query",
+            "required": false,
+            "description": "The league ID",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "season",
+            "in": "query",
+            "required": false,
+            "description": "The season year, e.g. 2023",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "team",
+            "in": "query",
+            "required": false,
+            "description": "The team ID",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "required": false,
+            "description": "Filter games by date, format YYYY-MM-DD",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "timezone",
+            "in": "query",
+            "required": false,
+            "description": "Timezone for the game date/time, e.g. America/New_York",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "description": "Game status: NS, 1H, HT, 2H, OT, BT, P, SUSP, INT, FT, AET, PEN, WO, LIVE",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-zuplo-route": {
+          "corsPolicy": "none",
+          "handler": {
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "baseUrl": "https://v1.baseball.api-sports.io",
+              "headers": {
+                "x-apisports-key": "$env(APISPORTS_KEY)"
+              }
+            }
+          },
+          "policies": {
+            "inbound": []
+          }
+        }
+      }
+    },
+    "/standings": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "get": {
+        "operationId": "getStandings",
+        "summary": "Get standings",
+        "description": "Returns standings for a given league and season",
+        "parameters": [
+          {
+            "name": "league",
+            "in": "query",
+            "required": true,
+            "description": "The league ID",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "season",
+            "in": "query",
+            "required": true,
+            "description": "The season year, e.g. 2023",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "team",
+            "in": "query",
+            "required": false,
+            "description": "Filter by team ID",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "x-zuplo-route": {
+          "corsPolicy": "none",
+          "handler": {
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "baseUrl": "https://v1.baseball.api-sports.io",
+              "headers": {
+                "x-apisports-key": "$env(APISPORTS_KEY)"
+              }
+            }
+          },
+          "policies": {
+            "inbound": []
+          }
+        }
+      }
+    },
+    "/odds": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "get": {
+        "operationId": "getOdds",
+        "summary": "Get odds",
+        "description": "Returns pre-match odds for games",
+        "parameters": [
+          {
+            "name": "game",
+            "in": "query",
+            "required": false,
+            "description": "The game ID",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "league",
+            "in": "query",
+            "required": false,
+            "description": "The league ID",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "season",
+            "in": "query",
+            "required": false,
+            "description": "The season year, e.g. 2023",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "bookmaker",
+            "in": "query",
+            "required": false,
+            "description": "The bookmaker ID",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "bet",
+            "in": "query",
+            "required": false,
+            "description": "The bet type ID",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "x-zuplo-route": {
+          "corsPolicy": "none",
+          "handler": {
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "baseUrl": "https://v1.baseball.api-sports.io",
+              "headers": {
+                "x-apisports-key": "$env(APISPORTS_KEY)"
+              }
+            }
+          },
+          "policies": {
+            "inbound": []
+          }
+        }
+      }
+    },
+    "/odds/live": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "get": {
+        "operationId": "getLiveOdds",
+        "summary": "Get live odds",
+        "description": "Returns live in-play odds for games currently in progress",
+        "parameters": [
+          {
+            "name": "game",
+            "in": "query",
+            "required": false,
+            "description": "The game ID",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "bet",
+            "in": "query",
+            "required": false,
+            "description": "The bet type ID",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "x-zuplo-route": {
+          "corsPolicy": "none",
+          "handler": {
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "baseUrl": "https://v1.baseball.api-sports.io",
+              "headers": {
+                "x-apisports-key": "$env(APISPORTS_KEY)"
+              }
+            }
+          },
+          "policies": {
+            "inbound": []
+          }
+        }
+      }
+    },
+    "/odds/bets": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "get": {
+        "operationId": "getBets",
+        "summary": "Get bet types",
+        "description": "Returns the list of available bet types for odds",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "description": "The bet type ID",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "description": "Search by bet name (minimum 3 characters)",
+            "schema": {
+              "type": "string",
+              "minLength": 3
+            }
+          }
+        ],
+        "x-zuplo-route": {
+          "corsPolicy": "none",
+          "handler": {
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "baseUrl": "https://v1.baseball.api-sports.io",
+              "headers": {
+                "x-apisports-key": "$env(APISPORTS_KEY)"
+              }
+            }
+          },
+          "policies": {
+            "inbound": []
+          }
+        }
+      }
+    },
+    "/bookmakers": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "get": {
+        "operationId": "getBookmakers",
+        "summary": "Get bookmakers",
+        "description": "Returns the list of available bookmakers",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "description": "The bookmaker ID",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "description": "Search by bookmaker name (minimum 3 characters)",
+            "schema": {
+              "type": "string",
+              "minLength": 3
+            }
+          }
+        ],
+        "x-zuplo-route": {
+          "corsPolicy": "none",
+          "handler": {
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "baseUrl": "https://v1.baseball.api-sports.io",
+              "headers": {
+                "x-apisports-key": "$env(APISPORTS_KEY)"
+              }
+            }
+          },
+          "policies": {
+            "inbound": []
+          }
+        }
+      }
+    },
+    "/mcp": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "post": {
+        "operationId": "mcp-server",
+        "summary": "MCP Server",
+        "x-zuplo-route": {
+          "corsPolicy": "none",
+          "handler": {
+            "export": "mcpServerHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "name": "baseball-mcp-server",
+              "version": "1.0.0",
+              "operations": [
+                {
+                  "file": "./config/routes.oas.json",
+                  "id": "getTimezones"
+                },
+                {
+                  "file": "./config/routes.oas.json",
+                  "id": "getSeasons"
+                },
+                {
+                  "file": "./config/routes.oas.json",
+                  "id": "getCountries"
+                },
+                {
+                  "file": "./config/routes.oas.json",
+                  "id": "getLeagues"
+                },
+                {
+                  "file": "./config/routes.oas.json",
+                  "id": "getTeams"
+                },
+                {
+                  "file": "./config/routes.oas.json",
+                  "id": "getGames"
+                },
+                {
+                  "file": "./config/routes.oas.json",
+                  "id": "getStandings"
+                },
+                {
+                  "file": "./config/routes.oas.json",
+                  "id": "getOdds"
+                },
+                {
+                  "file": "./config/routes.oas.json",
+                  "id": "getLiveOdds"
+                },
+                {
+                  "file": "./config/routes.oas.json",
+                  "id": "getBets"
+                },
+                {
+                  "file": "./config/routes.oas.json",
+                  "id": "getBookmakers"
+                }
+              ]
+            }
+          },
+          "policies": {
+            "inbound": []
+          }
+        }
+      }
+    },
+    "/mcp-16d1": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "post": {
+        "summary": "MCP Server",
+        "description": "Default MCP Server",
+        "x-zuplo-route": {
+          "corsPolicy": "none",
+          "handler": {
+            "export": "mcpServerHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "operations": [
+                {
+                  "file": "./config/routes.oas.json",
+                  "id": "getTimezones"
+                },
+                {
+                  "file": "./config/routes.oas.json",
+                  "id": "getSeasons"
+                },
+                {
+                  "file": "./config/routes.oas.json",
+                  "id": "getCountries"
+                },
+                {
+                  "file": "./config/routes.oas.json",
+                  "id": "getLeagues"
+                },
+                {
+                  "file": "./config/routes.oas.json",
+                  "id": "getTeams"
+                },
+                {
+                  "file": "./config/routes.oas.json",
+                  "id": "getGames"
+                },
+                {
+                  "file": "./config/routes.oas.json",
+                  "id": "getStandings"
+                },
+                {
+                  "file": "./config/routes.oas.json",
+                  "id": "getOdds"
+                },
+                {
+                  "file": "./config/routes.oas.json",
+                  "id": "getLiveOdds"
+                },
+                {
+                  "file": "./config/routes.oas.json",
+                  "id": "getBets"
+                },
+                {
+                  "file": "./config/routes.oas.json",
+                  "id": "getBookmakers"
+                }
+              ]
             }
           },
           "policies": {
             "inbound": []
           }
         },
-        "operationId": "new-route-319a4ce5"
+        "operationId": "e7ccc078-061c-42b5-8bbd-d231375af6d2"
       }
     }
   }
