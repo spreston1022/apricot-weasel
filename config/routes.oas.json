@@ -17,12 +17,9 @@
           "handler": {
             "export": "urlForwardHandler",
             "module": "$import(@zuplo/runtime)",
-            "options": {
-              "baseUrl": "https://v1.baseball.api-sports.io",
-              "headers": { "x-apisports-key": "a337d360c36aa11e4465d2fac96de6fb" }
-            }
+            "options": { "baseUrl": "https://v1.baseball.api-sports.io" }
           },
-          "policies": { "inbound": [] }
+          "policies": { "inbound": ["add-apisports-key"] }
         }
       }
     },
@@ -37,12 +34,9 @@
           "handler": {
             "export": "urlForwardHandler",
             "module": "$import(@zuplo/runtime)",
-            "options": {
-              "baseUrl": "https://v1.baseball.api-sports.io",
-              "headers": { "x-apisports-key": "a337d360c36aa11e4465d2fac96de6fb" }
-            }
+            "options": { "baseUrl": "https://v1.baseball.api-sports.io" }
           },
-          "policies": { "inbound": [] }
+          "policies": { "inbound": ["add-apisports-key"] }
         }
       }
     },
@@ -61,12 +55,9 @@
           "handler": {
             "export": "urlForwardHandler",
             "module": "$import(@zuplo/runtime)",
-            "options": {
-              "baseUrl": "https://v1.baseball.api-sports.io",
-              "headers": { "x-apisports-key": "a337d360c36aa11e4465d2fac96de6fb" }
-            }
+            "options": { "baseUrl": "https://v1.baseball.api-sports.io" }
           },
-          "policies": { "inbound": [] }
+          "policies": { "inbound": ["add-apisports-key"] }
         }
       }
     },
@@ -90,12 +81,9 @@
           "handler": {
             "export": "urlForwardHandler",
             "module": "$import(@zuplo/runtime)",
-            "options": {
-              "baseUrl": "https://v1.baseball.api-sports.io",
-              "headers": { "x-apisports-key": "a337d360c36aa11e4465d2fac96de6fb" }
-            }
+            "options": { "baseUrl": "https://v1.baseball.api-sports.io" }
           },
-          "policies": { "inbound": [] }
+          "policies": { "inbound": ["add-apisports-key"] }
         }
       }
     },
@@ -119,12 +107,9 @@
           "handler": {
             "export": "urlForwardHandler",
             "module": "$import(@zuplo/runtime)",
-            "options": {
-              "baseUrl": "https://v1.baseball.api-sports.io",
-              "headers": { "x-apisports-key": "a337d360c36aa11e4465d2fac96de6fb" }
-            }
+            "options": { "baseUrl": "https://v1.baseball.api-sports.io" }
           },
-          "policies": { "inbound": [] }
+          "policies": { "inbound": ["add-apisports-key"] }
         }
       }
     },
@@ -148,12 +133,9 @@
           "handler": {
             "export": "urlForwardHandler",
             "module": "$import(@zuplo/runtime)",
-            "options": {
-              "baseUrl": "https://v1.baseball.api-sports.io",
-              "headers": { "x-apisports-key": "a337d360c36aa11e4465d2fac96de6fb" }
-            }
+            "options": { "baseUrl": "https://v1.baseball.api-sports.io" }
           },
-          "policies": { "inbound": [] }
+          "policies": { "inbound": ["add-apisports-key"] }
         }
       }
     },
@@ -173,12 +155,9 @@
           "handler": {
             "export": "urlForwardHandler",
             "module": "$import(@zuplo/runtime)",
-            "options": {
-              "baseUrl": "https://v1.baseball.api-sports.io",
-              "headers": { "x-apisports-key": "a337d360c36aa11e4465d2fac96de6fb" }
-            }
+            "options": { "baseUrl": "https://v1.baseball.api-sports.io" }
           },
-          "policies": { "inbound": [] }
+          "policies": { "inbound": ["add-apisports-key"] }
         }
       }
     },
@@ -200,12 +179,9 @@
           "handler": {
             "export": "urlForwardHandler",
             "module": "$import(@zuplo/runtime)",
-            "options": {
-              "baseUrl": "https://v1.baseball.api-sports.io",
-              "headers": { "x-apisports-key": "a337d360c36aa11e4465d2fac96de6fb" }
-            }
+            "options": { "baseUrl": "https://v1.baseball.api-sports.io" }
           },
-          "policies": { "inbound": [] }
+          "policies": { "inbound": ["add-apisports-key"] }
         }
       }
     },
@@ -224,12 +200,9 @@
           "handler": {
             "export": "urlForwardHandler",
             "module": "$import(@zuplo/runtime)",
-            "options": {
-              "baseUrl": "https://v1.baseball.api-sports.io",
-              "headers": { "x-apisports-key": "a337d360c36aa11e4465d2fac96de6fb" }
-            }
+            "options": { "baseUrl": "https://v1.baseball.api-sports.io" }
           },
-          "policies": { "inbound": [] }
+          "policies": { "inbound": ["add-apisports-key"] }
         }
       }
     },
@@ -248,12 +221,9 @@
           "handler": {
             "export": "urlForwardHandler",
             "module": "$import(@zuplo/runtime)",
-            "options": {
-              "baseUrl": "https://v1.baseball.api-sports.io",
-              "headers": { "x-apisports-key": "a337d360c36aa11e4465d2fac96de6fb" }
-            }
+            "options": { "baseUrl": "https://v1.baseball.api-sports.io" }
           },
-          "policies": { "inbound": [] }
+          "policies": { "inbound": ["add-apisports-key"] }
         }
       }
     },
@@ -272,12 +242,9 @@
           "handler": {
             "export": "urlForwardHandler",
             "module": "$import(@zuplo/runtime)",
-            "options": {
-              "baseUrl": "https://v1.baseball.api-sports.io",
-              "headers": { "x-apisports-key": "a337d360c36aa11e4465d2fac96de6fb" }
-            }
+            "options": { "baseUrl": "https://v1.baseball.api-sports.io" }
           },
-          "policies": { "inbound": [] }
+          "policies": { "inbound": ["add-apisports-key"] }
         }
       }
     },
