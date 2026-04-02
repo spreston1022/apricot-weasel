@@ -1,3 +1,4 @@
+
 {
   "openapi": "3.1.0",
   "info": {
@@ -125,7 +126,7 @@
       "get": {
         "operationId": "getPlayerStats",
         "summary": "Get player stats",
-        "description": "Returns season stats for a specific player. Requires a player ID — use searchPlayer first to find the correct ID. Always use stats=season and season=2025 for current season stats.",
+        "description": "Returns season stats for a specific player. Requires a player ID — use searchPlayer first to find the correct ID. Use stats=season to get current season stats.",
         "parameters": [
           {
             "name": "playerId",
@@ -145,7 +146,7 @@
             "name": "season",
             "in": "query",
             "required": false,
-            "description": "Season year, e.g. 2025. Use 2025 for current season.",
+            "description": "Season year, e.g. 2025. Omit to get the current season.",
             "schema": { "type": "integer" }
           },
           {
