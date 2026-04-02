@@ -35,6 +35,8 @@
       }
     },
     {
+      "name": "open-id-jwt-auth-inbound",
+      "policyType": "open-id-jwt-auth-inbound",
       "handler": {
         "export": "OpenIdJwtInboundPolicy",
         "module": "$import(@zuplo/runtime)",
@@ -43,24 +45,22 @@
           "issuer": "https://auth.example.com",
           "secret": "wENfc4Pou8jhpANfckHOYoqsL1fZZ1yS5xyKTYnfVLY="
         }
-      },
-      "name": "open-id-jwt-auth-inbound",
-      "policyType": "open-id-jwt-auth-inbound"
+      }
     },
     {
+      "name": "jwt-scopes-inbound",
+      "policyType": "jwt-scopes-inbound",
       "handler": {
         "export": "JWTScopeValidationInboundPolicy",
         "module": "$import(@zuplo/runtime)",
         "options": {
-          "scopes": [
-            "plan:premium"
-          ]
+          "scopes": ["plan:premium"]
         }
-      },
-      "name": "jwt-scopes-inbound",
-      "policyType": "jwt-scopes-inbound"
+      }
     },
     {
+      "name": "open-id-jwt-auth-inbound-1",
+      "policyType": "open-id-jwt-auth-inbound",
       "handler": {
         "export": "OpenIdJwtInboundPolicy",
         "module": "$import(@zuplo/runtime)",
@@ -69,25 +69,22 @@
           "issuer": "https://auth.example.com",
           "secret": "wENfc4Pou8jhpANfckH0YoqsL1fZZ1yS5xyKTYnfVLY="
         }
-      },
-      "name": "open-id-jwt-auth-inbound-1",
-      "policyType": "open-id-jwt-auth-inbound"
+      }
     },
     {
+      "name": "jwt-scopes-inbound-1",
+      "policyType": "jwt-scopes-inbound",
       "handler": {
         "export": "JWTScopeValidationInboundPolicy",
         "module": "$import(@zuplo/runtime)",
         "options": {
-          "scopes": [
-            "read:payments",
-            "write:payments"
-          ]
+          "scopes": ["read:payments", "write:payments"]
         }
-      },
-      "name": "jwt-scopes-inbound-1",
-      "policyType": "jwt-scopes-inbound"
+      }
     },
     {
+      "name": "api-key-inbound",
+      "policyType": "api-key-inbound",
       "handler": {
         "export": "ApiKeyInboundPolicy",
         "module": "$import(@zuplo/runtime)",
@@ -95,9 +92,24 @@
           "allowUnauthenticatedRequests": false,
           "cacheTtlSeconds": 60
         }
-      },
-      "name": "api-key-inbound",
-      "policyType": "api-key-inbound"
+      }
+    },
+    {
+      "name": "add-apisports-key",
+      "policyType": "set-headers-inbound",
+      "handler": {
+        "export": "SetHeadersInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "headers": [
+            {
+              "name": "x-apisports-key",
+              "value": "a337d360c36aa11e4465d2fac96de6fb",
+              "overwrite": true
+            }
+          ]
+        }
+      }
     }
   ]
 }
