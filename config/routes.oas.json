@@ -22,7 +22,12 @@
               "baseUrl": "https://site.api.espn.com/apis/v2/sports/baseball/mlb"
             }
           },
-          "policies": { "inbound": [] }
+          "policies": { "inbound": [] },
+          "mcp": {
+            "type": "tool",
+            "name": "getStandings",
+            "description": "Returns current MLB standings for all divisions. No parameters required."
+          }
         }
       }
     },
@@ -50,7 +55,12 @@
               "baseUrl": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb"
             }
           },
-          "policies": { "inbound": [] }
+          "policies": { "inbound": [] },
+          "mcp": {
+            "type": "tool",
+            "name": "getScoreboard",
+            "description": "Returns today's MLB games with live scores. Use dates parameter (YYYYMMDD) for a specific date."
+          }
         }
       }
     },
@@ -70,7 +80,12 @@
               "forwardSearch": true
             }
           },
-          "policies": { "inbound": [] }
+          "policies": { "inbound": [] },
+          "mcp": {
+            "type": "tool",
+            "name": "getTeams",
+            "description": "Returns all MLB teams with IDs, names, and division info. Use this to look up a team ID before calling getTeamRoster."
+          }
         }
       }
     },
@@ -89,7 +104,12 @@
               "baseUrl": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb"
             }
           },
-          "policies": { "inbound": [] }
+          "policies": { "inbound": [] },
+          "mcp": {
+            "type": "tool",
+            "name": "getNews",
+            "description": "Returns the latest MLB news and headlines."
+          }
         }
       }
     },
@@ -117,7 +137,12 @@
               "baseUrl": "https://statsapi.mlb.com/api/v1"
             }
           },
-          "policies": { "inbound": [] }
+          "policies": { "inbound": [] },
+          "mcp": {
+            "type": "tool",
+            "name": "searchPlayer",
+            "description": "Search for an MLB player by name to get their player ID. Always call this first before getPlayerStats."
+          }
         }
       }
     },
@@ -166,7 +191,12 @@
               "baseUrl": "https://statsapi.mlb.com/api/v1"
             }
           },
-          "policies": { "inbound": [] }
+          "policies": { "inbound": [] },
+          "mcp": {
+            "type": "tool",
+            "name": "getPlayerStats",
+            "description": "Returns season stats for a specific player. Requires a player ID — use searchPlayer first. Use stats=season for current season stats."
+          }
         }
       }
     },
@@ -201,7 +231,12 @@
               "baseUrl": "https://statsapi.mlb.com/api/v1"
             }
           },
-          "policies": { "inbound": [] }
+          "policies": { "inbound": [] },
+          "mcp": {
+            "type": "tool",
+            "name": "getTeamRoster",
+            "description": "Returns the current roster for a specific team including player IDs. Use getTeams first to find the correct team ID."
+          }
         }
       }
     },
