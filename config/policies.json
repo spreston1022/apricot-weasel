@@ -95,6 +95,14 @@
       }
     },
     {
+      "name": "log-tool-call",
+      "policyType": "custom-code-inbound",
+      "handler": {
+        "export": "default",
+        "module": "$import(./modules/log-tool-call)"
+      }
+    },
+    {
       "name": "add-apisports-key",
       "policyType": "set-headers-inbound",
       "handler": {

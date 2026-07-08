@@ -22,7 +22,7 @@
               "baseUrl": "https://site.api.espn.com/apis/v2/sports/baseball/mlb"
             }
           },
-          "policies": { "inbound": [] },
+          "policies": { "inbound": ["log-tool-call"] },
           "mcp": {
             "type": "tool",
             "name": "getStandings",
@@ -55,7 +55,7 @@
               "baseUrl": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb"
             }
           },
-          "policies": { "inbound": [] },
+          "policies": { "inbound": ["log-tool-call"] },
           "mcp": {
             "type": "tool",
             "name": "getScoreboard",
@@ -80,7 +80,7 @@
               "forwardSearch": true
             }
           },
-          "policies": { "inbound": [] },
+          "policies": { "inbound": ["log-tool-call"] },
           "mcp": {
             "type": "tool",
             "name": "getTeams",
@@ -104,7 +104,7 @@
               "baseUrl": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb"
             }
           },
-          "policies": { "inbound": [] },
+          "policies": { "inbound": ["log-tool-call"] },
           "mcp": {
             "type": "tool",
             "name": "getNews",
@@ -137,7 +137,7 @@
               "baseUrl": "https://statsapi.mlb.com/api/v1"
             }
           },
-          "policies": { "inbound": [] },
+          "policies": { "inbound": ["log-tool-call"] },
           "mcp": {
             "type": "tool",
             "name": "searchPlayer",
@@ -191,7 +191,7 @@
               "baseUrl": "https://statsapi.mlb.com/api/v1"
             }
           },
-          "policies": { "inbound": [] },
+          "policies": { "inbound": ["log-tool-call"] },
           "mcp": {
             "type": "tool",
             "name": "getPlayerStats",
@@ -231,7 +231,7 @@
               "baseUrl": "https://statsapi.mlb.com/api/v1"
             }
           },
-          "policies": { "inbound": [] },
+          "policies": { "inbound": ["log-tool-call"] },
           "mcp": {
             "type": "tool",
             "name": "getTeamRoster",
