@@ -22,7 +22,7 @@
               "baseUrl": "https://site.api.espn.com/apis/v2/sports/baseball/mlb"
             }
           },
-          "policies": { "inbound": ["log-tool-call"] },
+          "policies": { "inbound": ["log-tool-call", "set-espn-user-agent"] },
           "mcp": {
             "type": "tool",
             "name": "getStandings",
@@ -55,7 +55,7 @@
               "baseUrl": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb"
             }
           },
-          "policies": { "inbound": ["log-tool-call"] },
+          "policies": { "inbound": ["log-tool-call", "set-espn-user-agent"] },
           "mcp": {
             "type": "tool",
             "name": "getScoreboard",
@@ -104,7 +104,7 @@
               "baseUrl": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb"
             }
           },
-          "policies": { "inbound": ["log-tool-call"] },
+          "policies": { "inbound": ["log-tool-call", "set-espn-user-agent"] },
           "mcp": {
             "type": "tool",
             "name": "getNews",

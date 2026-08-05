@@ -103,6 +103,23 @@
       }
     },
     {
+      "name": "set-espn-user-agent",
+      "policyType": "set-headers-inbound",
+      "handler": {
+        "export": "SetHeadersInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "headers": [
+            {
+              "name": "user-agent",
+              "value": "Zuplo-MLB-Gateway/1.0",
+              "overwrite": true
+            }
+          ]
+        }
+      }
+    },
+    {
       "name": "add-apisports-key",
       "policyType": "set-headers-inbound",
       "handler": {
