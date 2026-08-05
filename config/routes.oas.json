@@ -16,13 +16,10 @@
         "x-zuplo-route": {
           "corsPolicy": "none",
           "handler": {
-            "export": "urlForwardHandler",
-            "module": "$import(@zuplo/runtime)",
-            "options": {
-              "baseUrl": "https://site.api.espn.com/apis/v2/sports/baseball/mlb"
-            }
+            "export": "default",
+            "module": "$import(./modules/standings-handler)"
           },
-          "policies": { "inbound": ["log-tool-call", "set-espn-user-agent"] },
+          "policies": { "inbound": ["log-tool-call"] },
           "mcp": {
             "type": "tool",
             "name": "getStandings",
