@@ -103,6 +103,14 @@
       }
     },
     {
+      "name": "mcp-jwt-auth-inbound",
+      "policyType": "custom-code-inbound",
+      "handler": {
+        "export": "default",
+        "module": "$import(./modules/mcp-jwt-auth-inbound)"
+      }
+    },
+    {
       "name": "set-espn-user-agent",
       "policyType": "set-headers-inbound",
       "handler": {

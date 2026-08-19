@@ -17,7 +17,13 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
     ...Object.fromEntries(url.searchParams),
   };
 
-  context.log.info({ tool, parameters }, "MCP tool invoked");
+  const caller =
+    request.user?.sub ??
+    context.custom?.mcpCallerSub ??
+    context.parentContext?.custom?.mcpCallerSub ??
+    "unknown";
+
+  context.log.info({ tool, parameters, caller }, "MCP tool invoked");
 
   return request;
 }

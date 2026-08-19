@@ -258,6 +258,22 @@
               ]
             }
           },
+          "policies": { "inbound": ["mcp-jwt-auth-inbound"] }
+        }
+      }
+    },
+    "/.well-known/jwks.json": {
+      "x-zuplo-path": { "pathMode": "open-api" },
+      "get": {
+        "operationId": "jwks",
+        "summary": "JWKS for MCP worker JWT auth",
+        "description": "Publishes the public key used to verify JWTs the baseball Worker signs for the mcp-jwt-auth-inbound policy.",
+        "x-zuplo-route": {
+          "corsPolicy": "none",
+          "handler": {
+            "export": "default",
+            "module": "$import(./modules/jwks-handler)"
+          },
           "policies": { "inbound": [] }
         }
       }
