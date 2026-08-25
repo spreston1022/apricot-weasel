@@ -23,7 +23,27 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
     context.parentContext?.custom?.mcpCallerSub ??
     "unknown";
 
+  const startedAt = Date.now();
   context.log.info({ tool, parameters, caller }, "MCP tool invoked");
+
+  context.addResponseSendingHook(async (response) => {
+    const durationMs = Date.now() - startedAt;
+    const outcome = response.ok ? "success" : "error";
+
+    if (response.ok) {
+      context.log.info({ tool, caller, outcome, status: response.status, durationMs }, "MCP tool completed");
+    } else {
+      let detail: unknown;
+      try {
+        detail = await response.clone().json();
+      } catch {
+        detail = await response.clone().text().catch(() => undefined);
+      }
+      context.log.warn({ tool, caller, outcome, status: response.status, durationMs, detail }, "MCP tool failed");
+    }
+
+    return response;
+  });
 
   return request;
 }
