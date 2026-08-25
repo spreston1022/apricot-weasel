@@ -27,3 +27,5 @@ To learn more about Zuplo, you can visit the
 [Zuplo documentation](https://zuplo.com/docs).
 
 To connect with the community join [Discord](https://discord.zuplo.com).
+
+<!-- Trivial redeploy trigger: pick up MCP_JWT_SHARED_SECRET -->
