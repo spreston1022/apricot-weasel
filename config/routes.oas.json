@@ -87,6 +87,7 @@
           },
           "policies": {
             "inbound": [
+              "mcp-jwt-auth-inbound",
               "log-tool-call",
               "rate-limit-tool-call"
             ]
