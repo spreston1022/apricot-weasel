@@ -411,6 +411,14 @@
                 {
                   "file": "./config/routes.oas.json",
                   "id": "getTeamRoster"
+                },
+                {
+                  "file": "./config/routes.oas.json",
+                  "id": "jwks"
+                },
+                {
+                  "file": "./config/routes.oas.json",
+                  "id": "echo-get"
                 }
               ]
             }
