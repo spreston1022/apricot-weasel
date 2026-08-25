@@ -18,7 +18,10 @@ export function rateLimitByToolCall(
   context: ZuploContext,
   policyName: string,
 ): CustomRateLimitDetails | undefined {
-  const sub = request.user?.sub;
+  const sub =
+    request.user?.sub ??
+    context.custom?.mcpCallerSub ??
+    context.parentContext?.custom?.mcpCallerSub;
 
   if (!sub) {
     context.log.warn(`[${policyName}] No sub claim found; skipping tool-call rate limit`);
