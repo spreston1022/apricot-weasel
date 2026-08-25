@@ -9,7 +9,8 @@
     "docs": "zuplo docs"
   },
   "dependencies": {
-    "zuplo": "^6"
+    "zuplo": "^6",
+    "urlpattern-polyfill": "10.1.0"
   },
   "devDependencies": {
     "@types/node": "^22",
