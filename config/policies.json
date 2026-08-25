@@ -65,15 +65,15 @@
       }
     },
     {
-      "name": "test-hs256-auth",
+      "name": "mcp-jwt-auth",
       "policyType": "open-id-jwt-auth-inbound",
       "handler": {
         "export": "OpenIdJwtInboundPolicy",
         "module": "$import(@zuplo/runtime)",
         "options": {
-          "audience": "test-builtin-hs256",
+          "audience": "apricot-weasel-mcp",
           "issuer": "https://apricot-weasel-main-fc6ace1.zuplo.app",
-          "secret": "test-hs256-secret-do-not-use-in-prod"
+          "secret": "$env(MCP_JWT_SHARED_SECRET)"
         }
       }
     },
@@ -130,14 +130,6 @@
       "handler": {
         "export": "default",
         "module": "$import(./modules/log-tool-call)"
-      }
-    },
-    {
-      "name": "mcp-jwt-auth-inbound",
-      "policyType": "custom-code-inbound",
-      "handler": {
-        "export": "default",
-        "module": "$import(./modules/mcp-jwt-auth-inbound)"
       }
     },
     {

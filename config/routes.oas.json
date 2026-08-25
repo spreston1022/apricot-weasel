@@ -71,25 +71,6 @@
     }
   ],
   "paths": {
-    "/test-hs256-auth": {
-      "x-zuplo-path": {
-        "pathMode": "open-api"
-      },
-      "get": {
-        "operationId": "testHs256Auth",
-        "summary": "Throwaway route to test built-in OpenIdJwtInboundPolicy with an HS256 shared secret",
-        "x-zuplo-route": {
-          "corsPolicy": "none",
-          "handler": {
-            "export": "default",
-            "module": "$import(./modules/hello-world)"
-          },
-          "policies": {
-            "inbound": ["test-hs256-auth"]
-          }
-        }
-      }
-    },
     "/standings": {
       "x-zuplo-path": {
         "pathMode": "open-api"
@@ -106,7 +87,7 @@
           },
           "policies": {
             "inbound": [
-              "mcp-jwt-auth-inbound",
+              "mcp-jwt-auth",
               "log-tool-call",
               "rate-limit-tool-call"
             ]
@@ -146,7 +127,7 @@
           },
           "policies": {
             "inbound": [
-              "mcp-jwt-auth-inbound",
+              "mcp-jwt-auth",
               "log-tool-call",
               "rate-limit-tool-call"
             ]
@@ -179,7 +160,7 @@
           },
           "policies": {
             "inbound": [
-              "mcp-jwt-auth-inbound",
+              "mcp-jwt-auth",
               "log-tool-call",
               "rate-limit-tool-call"
             ]
@@ -211,7 +192,7 @@
           },
           "policies": {
             "inbound": [
-              "mcp-jwt-auth-inbound",
+              "mcp-jwt-auth",
               "log-tool-call",
               "set-espn-user-agent",
               "rate-limit-tool-call"
@@ -255,7 +236,7 @@
           },
           "policies": {
             "inbound": [
-              "mcp-jwt-auth-inbound",
+              "mcp-jwt-auth",
               "log-tool-call",
               "rate-limit-tool-call"
             ]
@@ -336,7 +317,7 @@
           },
           "policies": {
             "inbound": [
-              "mcp-jwt-auth-inbound",
+              "mcp-jwt-auth",
               "log-tool-call",
               "rate-limit-tool-call"
             ]
@@ -388,7 +369,7 @@
           },
           "policies": {
             "inbound": [
-              "mcp-jwt-auth-inbound",
+              "mcp-jwt-auth",
               "log-tool-call",
               "rate-limit-tool-call"
             ]
@@ -454,7 +435,7 @@
           },
           "policies": {
             "inbound": [
-              "mcp-jwt-auth-inbound"
+              "mcp-jwt-auth"
             ]
           }
         }
@@ -467,7 +448,7 @@
       "get": {
         "operationId": "jwks",
         "summary": "JWKS for MCP worker JWT auth",
-        "description": "Publishes the public key used to verify JWTs the baseball Worker signs for the mcp-jwt-auth-inbound policy.",
+        "description": "Publishes the public key used to verify JWTs the baseball Worker signs for the mcp-jwt-auth policy.",
         "x-zuplo-route": {
           "corsPolicy": "none",
           "handler": {
