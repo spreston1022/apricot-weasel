@@ -1,14 +1,80 @@
-
 {
-  "openapi": "3.1.0",
   "info": {
-    "title": "MLB Chatbot API",
+    "title": "Echo API",
     "version": "1.0.0",
-    "description": "MLB data via ESPN and MLB Stats API — no API key required"
+    "description": "A simple echo endpoint used for testing and demonstration purposes.\nReturns the full request details including headers, query parameters, and body.\nHosted at echo.zuplo.io — commonly used as a mock backend in Zuplo gateway demos.\n"
   },
+  "openapi": "3.1.0",
+  "components": {
+    "schemas": {
+      "EchoResponse": {
+        "type": "object",
+        "description": "Full echo of the incoming request",
+        "properties": {
+          "method": {
+            "type": "string",
+            "description": "HTTP method of the request",
+            "example": "GET"
+          },
+          "url": {
+            "type": "string",
+            "description": "Full URL of the request",
+            "example": "https://echo.zuplo.io/path-10"
+          },
+          "headers": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "All request headers as key-value pairs",
+            "example": {
+              "authorization": "Bearer zpka_abc123",
+              "content-type": "application/json"
+            }
+          },
+          "query": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Query string parameters as key-value pairs",
+            "example": {
+              "foo": "bar"
+            }
+          },
+          "body": {
+            "description": "Request body — null for GET requests",
+            "nullable": true,
+            "type": "null"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization",
+        "description": "Bearer token — your Zuplo API key"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://echo.zuplo.io",
+      "description": "Zuplo echo service"
+    }
+  ],
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ],
   "paths": {
     "/standings": {
-      "x-zuplo-path": { "pathMode": "open-api" },
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
       "get": {
         "operationId": "getStandings",
         "summary": "Get MLB standings",
@@ -19,7 +85,11 @@
             "export": "default",
             "module": "$import(./modules/standings-handler)"
           },
-          "policies": { "inbound": ["log-tool-call"] },
+          "policies": {
+            "inbound": [
+              "log-tool-call"
+            ]
+          },
           "mcp": {
             "type": "tool",
             "name": "getStandings",
@@ -29,7 +99,9 @@
       }
     },
     "/scoreboard": {
-      "x-zuplo-path": { "pathMode": "open-api" },
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
       "get": {
         "operationId": "getScoreboard",
         "summary": "Get MLB scoreboard",
@@ -40,7 +112,9 @@
             "in": "query",
             "required": false,
             "description": "Date in YYYYMMDD format, e.g. 20250401. Omit for today.",
-            "schema": { "type": "string" }
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "x-zuplo-route": {
@@ -49,7 +123,11 @@
             "export": "default",
             "module": "$import(./modules/scoreboard-handler)"
           },
-          "policies": { "inbound": ["log-tool-call"] },
+          "policies": {
+            "inbound": [
+              "log-tool-call"
+            ]
+          },
           "mcp": {
             "type": "tool",
             "name": "getScoreboard",
@@ -59,7 +137,9 @@
       }
     },
     "/teams": {
-      "x-zuplo-path": { "pathMode": "open-api" },
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
       "get": {
         "operationId": "getTeams",
         "summary": "Get MLB teams",
@@ -74,7 +154,11 @@
               "forwardSearch": true
             }
           },
-          "policies": { "inbound": ["log-tool-call"] },
+          "policies": {
+            "inbound": [
+              "log-tool-call"
+            ]
+          },
           "mcp": {
             "type": "tool",
             "name": "getTeams",
@@ -84,7 +168,9 @@
       }
     },
     "/news": {
-      "x-zuplo-path": { "pathMode": "open-api" },
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
       "get": {
         "operationId": "getNews",
         "summary": "Get MLB news",
@@ -98,7 +184,12 @@
               "baseUrl": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb"
             }
           },
-          "policies": { "inbound": ["log-tool-call", "set-espn-user-agent"] },
+          "policies": {
+            "inbound": [
+              "log-tool-call",
+              "set-espn-user-agent"
+            ]
+          },
           "mcp": {
             "type": "tool",
             "name": "getNews",
@@ -108,7 +199,9 @@
       }
     },
     "/people/search": {
-      "x-zuplo-path": { "pathMode": "open-api" },
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
       "get": {
         "operationId": "searchPlayer",
         "summary": "Search for a player by name",
@@ -119,7 +212,9 @@
             "in": "query",
             "required": true,
             "description": "Player name to search for, e.g. 'Shohei Ohtani' or 'Mookie Betts'",
-            "schema": { "type": "string" }
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "x-zuplo-route": {
@@ -131,7 +226,11 @@
               "baseUrl": "https://statsapi.mlb.com/api/v1"
             }
           },
-          "policies": { "inbound": ["log-tool-call"] },
+          "policies": {
+            "inbound": [
+              "log-tool-call"
+            ]
+          },
           "mcp": {
             "type": "tool",
             "name": "searchPlayer",
@@ -141,7 +240,9 @@
       }
     },
     "/people/{playerId}/stats": {
-      "x-zuplo-path": { "pathMode": "open-api" },
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
       "get": {
         "operationId": "getPlayerStats",
         "summary": "Get player stats",
@@ -152,28 +253,47 @@
             "in": "path",
             "required": true,
             "description": "The MLB player ID, e.g. 660271 for Shohei Ohtani",
-            "schema": { "type": "integer" }
+            "schema": {
+              "type": "integer"
+            }
           },
           {
             "name": "stats",
             "in": "query",
             "required": true,
             "description": "Type of stats. Use 'season' for current season stats.",
-            "schema": { "type": "string", "enum": ["season", "career", "gameLog", "yearByYear"] }
+            "schema": {
+              "type": "string",
+              "enum": [
+                "season",
+                "career",
+                "gameLog",
+                "yearByYear"
+              ]
+            }
           },
           {
             "name": "season",
             "in": "query",
             "required": false,
             "description": "Season year, e.g. 2025. Omit to get the current season.",
-            "schema": { "type": "integer" }
+            "schema": {
+              "type": "integer"
+            }
           },
           {
             "name": "group",
             "in": "query",
             "required": false,
             "description": "Stat group: 'hitting', 'pitching', or 'fielding'",
-            "schema": { "type": "string", "enum": ["hitting", "pitching", "fielding"] }
+            "schema": {
+              "type": "string",
+              "enum": [
+                "hitting",
+                "pitching",
+                "fielding"
+              ]
+            }
           }
         ],
         "x-zuplo-route": {
@@ -185,7 +305,11 @@
               "baseUrl": "https://statsapi.mlb.com/api/v1"
             }
           },
-          "policies": { "inbound": ["log-tool-call"] },
+          "policies": {
+            "inbound": [
+              "log-tool-call"
+            ]
+          },
           "mcp": {
             "type": "tool",
             "name": "getPlayerStats",
@@ -195,7 +319,9 @@
       }
     },
     "/teams/{teamId}/roster": {
-      "x-zuplo-path": { "pathMode": "open-api" },
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
       "get": {
         "operationId": "getTeamRoster",
         "summary": "Get team roster",
@@ -206,14 +332,18 @@
             "in": "path",
             "required": true,
             "description": "The MLB team ID, e.g. 119 for the LA Dodgers, 147 for the NY Yankees",
-            "schema": { "type": "integer" }
+            "schema": {
+              "type": "integer"
+            }
           },
           {
             "name": "season",
             "in": "query",
             "required": false,
             "description": "Season year, e.g. 2025",
-            "schema": { "type": "integer" }
+            "schema": {
+              "type": "integer"
+            }
           }
         ],
         "x-zuplo-route": {
@@ -225,7 +355,11 @@
               "baseUrl": "https://statsapi.mlb.com/api/v1"
             }
           },
-          "policies": { "inbound": ["log-tool-call"] },
+          "policies": {
+            "inbound": [
+              "log-tool-call"
+            ]
+          },
           "mcp": {
             "type": "tool",
             "name": "getTeamRoster",
@@ -235,7 +369,9 @@
       }
     },
     "/mcp": {
-      "x-zuplo-path": { "pathMode": "open-api" },
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
       "post": {
         "operationId": "mcp-server",
         "summary": "MCP Server",
@@ -248,22 +384,57 @@
               "name": "mlb-mcp-server",
               "version": "1.0.0",
               "operations": [
-                { "file": "./config/routes.oas.json", "id": "getStandings" },
-                { "file": "./config/routes.oas.json", "id": "getScoreboard" },
-                { "file": "./config/routes.oas.json", "id": "getTeams" },
-                { "file": "./config/routes.oas.json", "id": "getNews" },
-                { "file": "./config/routes.oas.json", "id": "searchPlayer" },
-                { "file": "./config/routes.oas.json", "id": "getPlayerStats" },
-                { "file": "./config/routes.oas.json", "id": "getTeamRoster" }
+                {
+                  "file": "./config/routes.oas.json",
+                  "id": "getStandings"
+                },
+                {
+                  "file": "./config/routes.oas.json",
+                  "id": "getScoreboard"
+                },
+                {
+                  "file": "./config/routes.oas.json",
+                  "id": "getTeams"
+                },
+                {
+                  "file": "./config/routes.oas.json",
+                  "id": "getNews"
+                },
+                {
+                  "file": "./config/routes.oas.json",
+                  "id": "searchPlayer"
+                },
+                {
+                  "file": "./config/routes.oas.json",
+                  "id": "getPlayerStats"
+                },
+                {
+                  "file": "./config/routes.oas.json",
+                  "id": "getTeamRoster"
+                },
+                {
+                  "file": "./config/routes.oas.json",
+                  "id": "jwks"
+                },
+                {
+                  "file": "./config/routes.oas.json",
+                  "id": "echo-get"
+                }
               ]
             }
           },
-          "policies": { "inbound": ["mcp-jwt-auth-inbound"] }
+          "policies": {
+            "inbound": [
+              "mcp-jwt-auth-inbound"
+            ]
+          }
         }
       }
     },
     "/.well-known/jwks.json": {
-      "x-zuplo-path": { "pathMode": "open-api" },
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
       "get": {
         "operationId": "jwks",
         "summary": "JWKS for MCP worker JWT auth",
@@ -274,7 +445,51 @@
             "export": "default",
             "module": "$import(./modules/jwks-handler)"
           },
-          "policies": { "inbound": [] }
+          "policies": {
+            "inbound": []
+          }
+        }
+      }
+    },
+    "/path-10": {
+      "get": {
+        "summary": "Echo a GET request",
+        "description": "Returns the full details of the incoming GET request as JSON — headers, query parameters, URL, and method.",
+        "operationId": "echo-get",
+        "parameters": [
+          {
+            "name": "any",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Any query parameters are echoed back in the response"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Echo response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EchoResponse"
+                },
+                "example": {
+                  "method": "GET",
+                  "url": "https://echo.zuplo.io/path-10?foo=bar",
+                  "headers": {
+                    "authorization": "Bearer zpka_abc123",
+                    "user-agent": "curl/7.88.1",
+                    "accept": "*/*"
+                  },
+                  "query": {
+                    "foo": "bar"
+                  },
+                  "body": null
+                }
+              }
+            }
+          }
         }
       }
     }
