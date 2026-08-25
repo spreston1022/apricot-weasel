@@ -87,7 +87,6 @@
           },
           "policies": {
             "inbound": [
-              "mcp-jwt-auth-builtin-test",
               "mcp-jwt-auth-inbound",
               "log-tool-call",
               "rate-limit-tool-call"
