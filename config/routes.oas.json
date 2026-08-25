@@ -87,7 +87,8 @@
           },
           "policies": {
             "inbound": [
-              "log-tool-call"
+              "log-tool-call",
+              "rate-limit-tool-call"
             ]
           },
           "mcp": {
@@ -125,7 +126,8 @@
           },
           "policies": {
             "inbound": [
-              "log-tool-call"
+              "log-tool-call",
+              "rate-limit-tool-call"
             ]
           },
           "mcp": {
@@ -156,7 +158,8 @@
           },
           "policies": {
             "inbound": [
-              "log-tool-call"
+              "log-tool-call",
+              "rate-limit-tool-call"
             ]
           },
           "mcp": {
@@ -187,7 +190,8 @@
           "policies": {
             "inbound": [
               "log-tool-call",
-              "set-espn-user-agent"
+              "set-espn-user-agent",
+              "rate-limit-tool-call"
             ]
           },
           "mcp": {
@@ -228,7 +232,8 @@
           },
           "policies": {
             "inbound": [
-              "log-tool-call"
+              "log-tool-call",
+              "rate-limit-tool-call"
             ]
           },
           "mcp": {
@@ -307,7 +312,8 @@
           },
           "policies": {
             "inbound": [
-              "log-tool-call"
+              "log-tool-call",
+              "rate-limit-tool-call"
             ]
           },
           "mcp": {
@@ -357,7 +363,8 @@
           },
           "policies": {
             "inbound": [
-              "log-tool-call"
+              "log-tool-call",
+              "rate-limit-tool-call"
             ]
           },
           "mcp": {

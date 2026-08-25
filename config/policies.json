@@ -35,6 +35,23 @@
       }
     },
     {
+      "name": "rate-limit-tool-call",
+      "policyType": "rate-limit-inbound",
+      "handler": {
+        "export": "RateLimitInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "rateLimitBy": "function",
+          "requestsAllowed": 5,
+          "timeWindowMinutes": 1,
+          "identifier": {
+            "export": "rateLimitByToolCall",
+            "module": "$import(./modules/rate-limit-tool-call)"
+          }
+        }
+      }
+    },
+    {
       "name": "open-id-jwt-auth-inbound",
       "policyType": "open-id-jwt-auth-inbound",
       "handler": {
