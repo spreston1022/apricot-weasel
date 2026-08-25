@@ -65,6 +65,19 @@
       }
     },
     {
+      "name": "mcp-jwt-auth-builtin-test",
+      "policyType": "open-id-jwt-auth-inbound",
+      "handler": {
+        "export": "OpenIdJwtInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "audience": "apricot-weasel-mcp",
+          "issuer": "https://apricot-weasel-main-fc6ace1.zuplo.app",
+          "jwkUrl": "https://apricot-weasel-main-fc6ace1.zuplo.app/.well-known/jwks.json"
+        }
+      }
+    },
+    {
       "name": "jwt-scopes-inbound",
       "policyType": "jwt-scopes-inbound",
       "handler": {
