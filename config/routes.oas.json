@@ -71,6 +71,25 @@
     }
   ],
   "paths": {
+    "/test-hs256-auth": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "get": {
+        "operationId": "testHs256Auth",
+        "summary": "Throwaway route to test built-in OpenIdJwtInboundPolicy with an HS256 shared secret",
+        "x-zuplo-route": {
+          "corsPolicy": "none",
+          "handler": {
+            "export": "default",
+            "module": "$import(./modules/hello-world)"
+          },
+          "policies": {
+            "inbound": ["test-hs256-auth"]
+          }
+        }
+      }
+    },
     "/standings": {
       "x-zuplo-path": {
         "pathMode": "open-api"

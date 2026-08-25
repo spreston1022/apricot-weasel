@@ -65,6 +65,19 @@
       }
     },
     {
+      "name": "test-hs256-auth",
+      "policyType": "open-id-jwt-auth-inbound",
+      "handler": {
+        "export": "OpenIdJwtInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "audience": "test-builtin-hs256",
+          "issuer": "https://apricot-weasel-main-fc6ace1.zuplo.app",
+          "secret": "test-hs256-secret-do-not-use-in-prod"
+        }
+      }
+    },
+    {
       "name": "jwt-scopes-inbound",
       "policyType": "jwt-scopes-inbound",
       "handler": {
