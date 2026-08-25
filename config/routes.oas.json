@@ -127,6 +127,7 @@
           },
           "policies": {
             "inbound": [
+              "mcp-jwt-auth-inbound",
               "log-tool-call",
               "rate-limit-tool-call"
             ]
@@ -159,6 +160,7 @@
           },
           "policies": {
             "inbound": [
+              "mcp-jwt-auth-inbound",
               "log-tool-call",
               "rate-limit-tool-call"
             ]
@@ -190,6 +192,7 @@
           },
           "policies": {
             "inbound": [
+              "mcp-jwt-auth-inbound",
               "log-tool-call",
               "set-espn-user-agent",
               "rate-limit-tool-call"
@@ -233,6 +236,7 @@
           },
           "policies": {
             "inbound": [
+              "mcp-jwt-auth-inbound",
               "log-tool-call",
               "rate-limit-tool-call"
             ]
@@ -313,6 +317,7 @@
           },
           "policies": {
             "inbound": [
+              "mcp-jwt-auth-inbound",
               "log-tool-call",
               "rate-limit-tool-call"
             ]
@@ -364,6 +369,7 @@
           },
           "policies": {
             "inbound": [
+              "mcp-jwt-auth-inbound",
               "log-tool-call",
               "rate-limit-tool-call"
             ]
