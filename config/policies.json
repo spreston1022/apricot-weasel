@@ -165,6 +165,25 @@
           ]
         }
       }
+    },
+    {
+      "name": "mcp-capability-filter",
+      "policyType": "mcp-capability-filter-inbound",
+      "handler": {
+        "export": "McpCapabilityFilterInboundPolicy",
+        "module": "$import(@zuplo/runtime/mcp-gateway)",
+        "options": {
+          "tools": [
+            "getStandings",
+            "getScoreboard",
+            "getTeams",
+            "getNews",
+            "searchPlayer",
+            "getPlayerStats",
+            "getTeamRoster"
+          ]
+        }
+      }
     }
   ]
 }

@@ -435,7 +435,8 @@
           },
           "policies": {
             "inbound": [
-              "mcp-jwt-auth"
+              "mcp-jwt-auth",
+              "mcp-capability-filter"
             ]
           }
         }
