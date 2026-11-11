@@ -2,7 +2,7 @@
   "info": {
     "title": "Echo API",
     "version": "1.0.0",
-    "description": "A simple echo endpoint used for testing and demonstration purposes.\nReturns the full request details including headers, query parameters, and body.\nHosted at echo.zuplo.io — commonly used as a mock backend in Zuplo gateway demos.\n"
+    "description": "A simple echo endpoint used for testing and demonstration purposes.\nReturns the full request details including headers, query parameters, and body.\nHosted at echo.zuplo.io \u2014 commonly used as a mock backend in Zuplo gateway demos.\n"
   },
   "openapi": "3.1.0",
   "components": {
@@ -43,7 +43,7 @@
             }
           },
           "body": {
-            "description": "Request body — null for GET requests",
+            "description": "Request body \u2014 null for GET requests",
             "nullable": true,
             "type": "null"
           }
@@ -55,7 +55,7 @@
         "type": "apiKey",
         "in": "header",
         "name": "Authorization",
-        "description": "Bearer token — your Zuplo API key"
+        "description": "Bearer token \u2014 your Zuplo API key"
       }
     }
   },
@@ -256,7 +256,7 @@
       "get": {
         "operationId": "getPlayerStats",
         "summary": "Get player stats",
-        "description": "Returns season stats for a specific player. Requires a player ID — use searchPlayer first to find the correct ID. Use stats=season to get current season stats.",
+        "description": "Returns season stats for a specific player. Requires a player ID \u2014 use searchPlayer first to find the correct ID. Use stats=season to get current season stats.",
         "parameters": [
           {
             "name": "playerId",
@@ -325,7 +325,7 @@
           "mcp": {
             "type": "tool",
             "name": "getPlayerStats",
-            "description": "Returns season stats for a specific player. Requires a player ID — use searchPlayer first. Use stats=season for current season stats."
+            "description": "Returns season stats for a specific player. Requires a player ID \u2014 use searchPlayer first. Use stats=season for current season stats."
           }
         }
       }
@@ -429,6 +429,10 @@
                 {
                   "file": "./config/routes.oas.json",
                   "id": "echo-get"
+                },
+                {
+                  "file": "./config/routes.oas.json",
+                  "id": "postseason2026Results"
                 }
               ]
             }
@@ -465,7 +469,7 @@
     "/path-10": {
       "get": {
         "summary": "Echo a GET request",
-        "description": "Returns the full details of the incoming GET request as JSON — headers, query parameters, URL, and method.",
+        "description": "Returns the full details of the incoming GET request as JSON \u2014 headers, query parameters, URL, and method.",
         "operationId": "echo-get",
         "parameters": [
           {
@@ -500,6 +504,35 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/postseason/2026": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "get": {
+        "operationId": "postseason2026Results",
+        "summary": "2026 MLB postseason results",
+        "description": "Final results of the 2026 MLB postseason: every series from the Wild Card round through the World Series, with game-by-game scores.",
+        "x-zuplo-route": {
+          "corsPolicy": "none",
+          "handler": {
+            "export": "default",
+            "module": "$import(./modules/postseason-2026-handler)"
+          },
+          "policies": {
+            "inbound": [
+              "mcp-jwt-auth"
+            ]
+          },
+          "mcp": {
+            "type": "resource",
+            "name": "postseason2026Results",
+            "description": "Final results of the 2026 MLB postseason: the champion, every series result from the Wild Card round through the World Series, and game-by-game scores.",
+            "uri": "mlb://postseason/2026/results",
+            "mimeType": "application/json"
           }
         }
       }
