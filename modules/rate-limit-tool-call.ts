@@ -5,12 +5,12 @@ import {
   ZuploRequest,
 } from "@zuplo/runtime";
 
-const REQUESTS_ALLOWED = 5;
+const REQUESTS_ALLOWED = 15;
 const TIME_WINDOW_MINUTES = 1;
 
 /**
  * Flat rate limit by the JWT `sub` claim, shared across all MCP tool
- * routes - 5 tool calls/minute per caller, regardless of which tool.
+ * routes - 15 tool calls/minute per caller, regardless of which tool.
  * Assumes mcp-jwt-auth-inbound has already run and populated request.user.
  */
 export function rateLimitByToolCall(

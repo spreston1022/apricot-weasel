@@ -3,7 +3,7 @@
   "info": {
     "title": "Sports MCP Server",
     "version": "1.0.0",
-    "description": "Second MCP server (/sports/mcp): multi-sport scores, standings and news, Formula 1, and game-day weather. The MLB server lives in routes.oas.json at /mcp."
+    "description": "Second MCP server (/sports/mcp): multi-sport scores, standings and news, and game-day weather. The MLB server lives in routes.oas.json at /mcp."
   },
   "paths": {
     "/sports/scoreboard": {
@@ -163,148 +163,6 @@
         ]
       }
     },
-    "/sports/f1/standings": {
-      "x-zuplo-path": {
-        "pathMode": "open-api"
-      },
-      "get": {
-        "operationId": "getF1Standings",
-        "summary": "Get Formula 1 championship standings",
-        "description": "Returns the Formula 1 championship standings. Use type=drivers (default) or type=constructors.",
-        "x-zuplo-route": {
-          "corsPolicy": "none",
-          "handler": {
-            "export": "standings",
-            "module": "$import(./modules/sports-f1-handler)"
-          },
-          "policies": {
-            "inbound": [
-              "mcp-jwt-auth",
-              "log-tool-call",
-              "rate-limit-tool-call"
-            ]
-          },
-          "mcp": {
-            "type": "tool",
-            "name": "getF1Standings",
-            "description": "Returns the Formula 1 championship standings. Use type=drivers (default) or type=constructors."
-          }
-        },
-        "parameters": [
-          {
-            "name": "type",
-            "in": "query",
-            "required": false,
-            "description": "Which championship. Defaults to drivers.",
-            "schema": {
-              "type": "string",
-              "enum": [
-                "drivers",
-                "constructors"
-              ]
-            }
-          },
-          {
-            "name": "season",
-            "in": "query",
-            "required": false,
-            "description": "Season year, e.g. 2025. Omit for the current season.",
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ]
-      }
-    },
-    "/sports/f1/results": {
-      "x-zuplo-path": {
-        "pathMode": "open-api"
-      },
-      "get": {
-        "operationId": "getF1RaceResults",
-        "summary": "Get Formula 1 race results",
-        "description": "Returns the finishing order of a Formula 1 race. With no parameters, returns the most recent race.",
-        "x-zuplo-route": {
-          "corsPolicy": "none",
-          "handler": {
-            "export": "raceResults",
-            "module": "$import(./modules/sports-f1-handler)"
-          },
-          "policies": {
-            "inbound": [
-              "mcp-jwt-auth",
-              "log-tool-call",
-              "rate-limit-tool-call"
-            ]
-          },
-          "mcp": {
-            "type": "tool",
-            "name": "getF1RaceResults",
-            "description": "Returns the finishing order of a Formula 1 race. With no parameters, returns the most recent race."
-          }
-        },
-        "parameters": [
-          {
-            "name": "season",
-            "in": "query",
-            "required": false,
-            "description": "Season year, e.g. 2025. Omit for the current season.",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "round",
-            "in": "query",
-            "required": false,
-            "description": "Round number within the season, e.g. 5. Omit for the most recent race.",
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ]
-      }
-    },
-    "/sports/f1/schedule": {
-      "x-zuplo-path": {
-        "pathMode": "open-api"
-      },
-      "get": {
-        "operationId": "getF1Schedule",
-        "summary": "Get the Formula 1 race calendar",
-        "description": "Returns every race in a Formula 1 season with its round, circuit, location and date. Use it to find the next race or a round number for getF1RaceResults.",
-        "x-zuplo-route": {
-          "corsPolicy": "none",
-          "handler": {
-            "export": "schedule",
-            "module": "$import(./modules/sports-f1-handler)"
-          },
-          "policies": {
-            "inbound": [
-              "mcp-jwt-auth",
-              "log-tool-call",
-              "rate-limit-tool-call"
-            ]
-          },
-          "mcp": {
-            "type": "tool",
-            "name": "getF1Schedule",
-            "description": "Returns every race in a Formula 1 season with its round, circuit, location and date. Use it to find the next race or a round number for getF1RaceResults."
-          }
-        },
-        "parameters": [
-          {
-            "name": "season",
-            "in": "query",
-            "required": false,
-            "description": "Season year, e.g. 2025. Omit for the current season.",
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ]
-      }
-    },
     "/sports/weather": {
       "x-zuplo-path": {
         "pathMode": "open-api"
@@ -372,18 +230,6 @@
                 {
                   "file": "./config/sports.oas.json",
                   "id": "getLeagueNews"
-                },
-                {
-                  "file": "./config/sports.oas.json",
-                  "id": "getF1Standings"
-                },
-                {
-                  "file": "./config/sports.oas.json",
-                  "id": "getF1RaceResults"
-                },
-                {
-                  "file": "./config/sports.oas.json",
-                  "id": "getF1Schedule"
                 },
                 {
                   "file": "./config/sports.oas.json",
